@@ -1,0 +1,28 @@
+server:
+  error:
+    include-stacktrace: always
+  port: 8888
+  servlet:
+    contextPath: /test
+    session:
+      timeout: 10
+  tomcat:
+    accesslog:
+      enabled: true
+spring:
+  thymeleaf:
+    cache: false
+  profiles:
+    active: prod
+  datasource:
+    url: jdbc:mysql://aakaep9zhwashc.cybq9xhurmmh.ap-south-1.rds.amazonaws.com:3306/ebdb?useSSL=false&serverTimezone=UTC
+    username: bripl
+    password: ?bvg*K_^zC3Eb=
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    database: mysql
+    
+welcome:
+  message: Accelsiors Test Example

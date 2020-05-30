@@ -1,0 +1,14 @@
+<div th:if="${user != null}" th:fragment="topline" class="row" xmlns:th="http://www.w3.org/1999/xhtml">
+		<!-- Topadditions line -->
+		<div class="topadditions-box" style="margin-top: 0px !imoprtant;">
+		  <ul class="breadcrumb">
+		    <li style="padding-left: 0px; margin-left: 0px;"><i>You are here: </i></li>
+		    <li><a href="#">Home</a></li>
+		  </ul>
+		<div th:text="${variable?.name}">I wonder, if variable.name exists...</div>
+		<div class="log-timer"><i class="fa fa-fw fa-user" style="color: #cecece; margin-right: 5px;"></i><span th:text="${user.name}">Sample User Name></span> | Auto checkout: &nbsp;</i>&nbsp;<strong id="time-left" style="font-size: 15px;">9:59</strong></div>
+		<div style="clear: both;"></div>
+		</div>
+		
+	</div>
+</div>

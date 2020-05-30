@@ -1,0 +1,29 @@
+<div th:if="${user != null}" th:fragment="header" class="header-bg" xmlns:th="http://www.w3.org/1999/xhtml">
+<!--	<div class="header-bg"> -->
+		<div class="row">
+			<div class="topnav" id="ADAMTopnav">
+			   <a href="#" th:href="@{/}" style="padding: 0px 5px 4px 0px; border-right: 0px; margin: 0px 70px 0px 8px;"><img src="images/adam-logo-small.png" width="100px" /></a>
+			   <a href="hello?name=somebody" style="font-weight: bold;"><i class="fa fa-fw fa-home" style="color: #eb3318; margin-right: 5px;"></i>HOME</a>
+			    <a href="page-leftnav.html" style="font-weight: bold;"><i class="fa fa-fw fa-file-o" style="color: #eb3318; margin-right: 5px;"></i>DOCUMENTS</a>
+			    <a href="preferencies.html" style="font-size: 14px;  padding-top: 4px;" ><i class="fa fa-fw fa-gear"style="color: #cecece; margin-right: 5px;"></i><span style="font-size: 14px; margin-left: 5px;">Account Preferences</span></a>
+			    <a style="font-size: 14px;  padding-top: 4px;" href="#openAbout"><i class="fa fa-fw fa-info" style="color: #cecece; margin-right: 5px;"></i>About</a>
+			    <a style="font-size: 14px;  padding-top: 4px;" href="#"><i class="fa fa-fw fa-question-circle" style="color: #cecece; margin-right: 5px;"></i>User's Manual</a>
+			    <a style="font-size: 14px;  padding-top: 4px;" href="#" th:href="@{/logout}"><i class="fa fa-fw fa-sign-out" style="color: #cecece; margin-right: 5px;"></i>Logout</a>
+			  	<a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="topnavFunction()">&#9776;</a>
+		    </div>
+		<!-- </div> -->
+		<!-- END OF TOPNAV -->
+		<div id="openAbout" class="modalDialog">
+		<div class="full-widthcolumn" style="padding: 0px 15px 20px 15px; margin-top: 50px;">
+		<!-- <div class="card-full-width" style="padding: 0px 15px 20px 15px; style="margin-top: 0px;""> -->
+			<a href="#close" title="Close" class="close">&times;</a>
+			<h2>Accelsiors Document Access Management System</h2>
+			<p th:text="'ADAM Version: ' + ${version}"><strong>ADAM Version: 4.0.2</strong></p>
+			<img src="images/adam-logo-small.png" border="0" width="100px"/>
+			<p>&copy; 2013 <a href=" http://www.accelsiors.com/">Accelsiors D.o.o.</a> &nbsp &nbsp &nbsp <a href="http://www.accelsiors.com">http://www.accelsiors.com</a><br />
+	All rights reserved.<br/>		
+		<!-- </div> -->
+		</div>
+		</div>
+	</div>
+</div>

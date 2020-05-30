@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Accelsiors Test Example</title>
+
+	<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/base-min.css">
+    <link rel="stylesheet" th:href="@{webjars/bootstrap/4.2.1/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="http://www.accelsiors.com">Accelsiors</a>
+</nav>
+
+<main role="main" class="container">
+
+    <div class="starter-template">
+        <h1 th:text="${message}">Accelsiors Test Example</h1>
+        <h2>
+            <span th:text="'Hello, ' + ${user}"></span>
+        </h2>
+	    <!-- Links -->
+	    <ul class="navbar-nav mr-auto">
+	      <li class="nav-item active">
+	        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="browse">Browse</a>
+	      </li>
+	    </ul>
+	    <!-- Links -->
+    </div>
+
+
+</main>
+<!-- /.container -->
+
+<script type="text/javascript" th:src="@{webjars/bootstrap/4.2.1/js/bootstrap.min.js}"></script>
+</body>
+</html>
