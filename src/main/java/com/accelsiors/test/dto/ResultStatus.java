@@ -1,17 +1,15 @@
 package com.accelsiors.test.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder.Default;
+import groovy.transform.builder.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 /**
  * @author Raju Khunt RK
  *
  */
+
+@Builder
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class ResultStatus {
 
 	private Integer statusCode = 0;

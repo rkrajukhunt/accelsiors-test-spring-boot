@@ -4,17 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.accelsiors.test.dto.ResultStatus;
 import com.accelsiors.test.dto.TaskVO;
@@ -62,8 +58,7 @@ public class TaskController {
 			model.addAttribute("errorMessage", "");
 
 		} catch (Exception e) {
-			// TODO: handle exception
-			log.debug("getting error");
+			log.debug("getting error into task edit");
 		}
 		return "task-edit";
 	}
@@ -71,12 +66,10 @@ public class TaskController {
 	@PostMapping("/save-task")
 	public String saveTask(TaskVO taskVO, Model model) {
 		try {
-			
 			ResultStatus saveTask = taskService.saveTask(taskVO);
-			
 			if (saveTask.getStatusCode() == 1)
 				return "redirect:/task-view";
-			
+
 			List<Activity> activities = taskService.getActivitirs();
 			model.addAttribute("activities", activities);
 			model.addAttribute("taskRoute", "/save-task");
@@ -94,14 +87,12 @@ public class TaskController {
 		log.info("payload :- {}", taskVO.toString());
 		try {
 			ResultStatus editTask = taskService.editTask(taskVO);
-			if (editTask.getStatusCode() == 1) {
+			if (editTask.getStatusCode() == 1)
 				return "redirect:/task-view";
-			}
+			
 			List<Activity> activities = taskService.getActivitirs();
 			model.addAttribute("activities", activities);
-
 			model.addAttribute("taskRoute", "/update-task");
-
 			model.addAttribute("task", taskVO);
 			model.addAttribute("taskType", "Edit Task");
 			model.addAttribute("errorMessage", editTask.getMessage());

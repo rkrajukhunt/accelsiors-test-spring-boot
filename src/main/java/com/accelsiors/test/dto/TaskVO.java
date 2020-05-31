@@ -1,9 +1,6 @@
-/**
- * @author Raju Khunt RK
- * 
- */
 package com.accelsiors.test.dto;
 
+import groovy.transform.builder.Builder;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,6 +10,7 @@ import lombok.NoArgsConstructor;
  *
  */
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class TaskVO {

@@ -20,6 +20,7 @@ public interface TaskService {
 	public ResultStatus saveTask(TaskVO taskVO);
 
 	public ResultStatus editTask(TaskVO taskVO);
+
 	public TaskVO getTaskById(Integer id);
 
 }

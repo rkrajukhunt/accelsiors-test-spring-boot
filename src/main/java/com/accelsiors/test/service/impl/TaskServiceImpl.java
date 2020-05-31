@@ -87,7 +87,7 @@ public class TaskServiceImpl implements TaskService {
 
 		ResultStatus status = new ResultStatus();
 		try {
-			//validate here
+			// validate here
 			SimpleDateFormat sdf = new SimpleDateFormat(IConstant.taskDateFormate);
 
 			Optional<Task> optTask = taskRepository.findByActivityIdAndDate(taskVO.getActivityId(),
