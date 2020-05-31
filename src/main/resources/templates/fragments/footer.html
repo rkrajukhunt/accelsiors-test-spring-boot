@@ -1,0 +1,52 @@
+<!-- FOOTER -->
+<div th:if="${user != null}" th:fragment="footer" class="footer" xmlns:th="http://www.w3.org/1999/xhtml">
+	<div class="footeradditions-box" style="margin-top: 0px !imoprtant;">
+		<div class="footer-left" style="float: left;">  
+		<p><strong>ADAM</strong>&#8482; - Accelsiors Document Access Management System</p>
+	</div>
+	<div class="footer-right" stlye="display: inline-block;">
+		<ul class="footeradditions-box" style="list-style-type: none;"><li>&#169; 2019 - <a href="http://accelsiors.com" target="_blank" style="font-weight: bold;">Accelsiors CRO</a> Ltd. All rights reserved. <span style="margin-left: 15px; color: #1c62a3;">|</span>  <a href="http://accelsiors.com" target="_blank" style="border: 0px;"><img src="images/Accelsiors-logo-white.png" width="100px" style="margin-left: 15px;" / ></a></li>
+		</ul>  
+	</div>
+</div>
+
+<script th:inline="javascript">
+function topnavFunction() {
+  var x = document.getElementById("ADAMTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
+
+//Set the date we're counting down to
+var countDownDate = new Date().getTime()+10*60*1000;
+var logoutUrl = /*[[@{/logout}]]*/ '#';
+
+//Update the count down every 1 second
+var x = setInterval(function() {
+
+// Get todays date and time
+var now = new Date().getTime();
+ 
+// Find the distance between now and the count down date
+var distance = countDownDate - now;
+ 
+// Time calculations for days, hours, minutes and seconds
+var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+ 
+// Output the result in an element with id="demo"
+if (distance >= 0) {
+	document.getElementById("time-left").innerHTML = minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+}
+ 
+// If the count down is over, write some text 
+if (distance <= 0) {
+	countDownDate = new Date().getTime()+10*60*1000;
+	document.location.href = logoutUrl;
+	}
+}, 1000);
+
+</script>

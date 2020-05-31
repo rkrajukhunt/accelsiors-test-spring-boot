@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{fragments/main_layout}">
+<head>
+	<title>ADAM - Error Page</title>
+</head>
+<body>
+	<!-- Main Content box start -->
+	<div layout:fragment="content" class="main-contentbox">
+	
+		<h1>Error Page</h1>
+		<table>
+		    <tr>
+		        <td>Date</td>
+		        <td th:text="${timestamp}"/>
+		    </tr>
+		    <tr>
+		        <td>Path</td>
+		        <td th:text="${path}"/>
+		    </tr>
+		    <tr>
+		        <td>Error</td>
+		        <td th:text="${error}"/>
+		    </tr>
+		    <tr>
+		        <td>Status</td>
+		        <td th:text="${status}"/>
+		    </tr>
+		    <tr>
+		        <td>Message</td>
+		        <td th:text="${message}"/>
+		    </tr>
+		    <tr>
+		        <td>Exception</td>
+		        <td th:text="${exception}"/>
+		    </tr>
+		    <tr>
+		        <td>Trace</td>
+		        <td>
+		            <pre th:text="${trace}"/>
+		        </td>
+		    </tr>
+		</table>	
+	
+	</div>
+	<div style="clear: both;"></div><!-- end of full-width column -->
+	
+</body>
+</html>
