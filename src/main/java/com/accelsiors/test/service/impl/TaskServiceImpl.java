@@ -56,12 +56,13 @@ public class TaskServiceImpl implements TaskService {
 		}
 
 	}
+
 	public TaskVO getTaskById(Integer id) {
 		log.info("Enter into the getTasks ");
 
 		try {
 			Task task = taskRepository.findById(id).get();
-			if(task != null ) {
+			if (task != null) {
 				SimpleDateFormat sdf = new SimpleDateFormat(IConstant.taskDateFormate);
 
 				TaskVO vo = new TaskVO();
@@ -72,10 +73,10 @@ public class TaskServiceImpl implements TaskService {
 				vo.setDuration(task.getDuration());
 				return vo;
 			}
-		
+
 		} catch (Exception e) {
 			log.debug("Exception raised at getTaskById in  TaskServiceImpl class", e);
-			
+
 		}
 		return null;
 	}
@@ -86,17 +87,18 @@ public class TaskServiceImpl implements TaskService {
 
 		ResultStatus status = new ResultStatus();
 		try {
+			//validate here
 			SimpleDateFormat sdf = new SimpleDateFormat(IConstant.taskDateFormate);
 
 			Optional<Task> optTask = taskRepository.findByActivityIdAndDate(taskVO.getActivityId(),
 					sdf.parse(taskVO.getDate()));
-			
+
 			Optional<Activity> otpActivity;
-			
+
 			if (!optTask.isEmpty()) {
 				status.setMessage("Activity already exist on this date.");
 				return status;
-			}else {
+			} else {
 				otpActivity = activityRepository.findById(taskVO.getActivityId());
 			}
 
@@ -128,13 +130,13 @@ public class TaskServiceImpl implements TaskService {
 
 			Optional<Task> optTask = taskRepository.findByActivityIdAndDateAndIdNot(taskVO.getActivityId(),
 					sdf.parse(taskVO.getDate()), taskVO.getId());
-			
+
 			Optional<Activity> otpActivity;
-			
+
 			if (!optTask.isEmpty()) {
 				status.setMessage("Activity already exist on this date.");
 				return status;
-			}else {
+			} else {
 				otpActivity = activityRepository.findById(taskVO.getActivityId());
 			}
 			Optional<Task> existingTask = taskRepository.findById(taskVO.getId());

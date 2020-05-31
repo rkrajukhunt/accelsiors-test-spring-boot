@@ -1,62 +1,76 @@
 <!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Accelsiors Test Example</title>
+<title>Accelsiors Test Example</title>
 
-	<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/base-min.css">
-    <link rel="stylesheet" th:href="@{webjars/bootstrap/4.2.1/css/bootstrap.min.css}"/>
-    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+<link rel="stylesheet"
+	href="https://unpkg.com/purecss@1.0.0/build/base-min.css">
+<link rel="stylesheet"
+	th:href="@{webjars/bootstrap/4.2.1/css/bootstrap.min.css}" />
+<link rel="stylesheet" th:href="@{/css/main.css}" />
 
 </head>
 
 <body>
 
-<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-    <a class="navbar-brand" href="http://www.accelsiors.com">Accelsiors</a>
-</nav>
+	<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+		<a class="navbar-brand" href="http://www.accelsiors.com">Accelsiors</a>
+	</nav>
 
-<main role="main" class="container">
-
-    <div class="starter-template">
-    	<h1>[[${taskType}]]</h1>
-    		<form th:action="@{${taskRoute}}" th:object="${task}" method="POST">
-			  <div class="form-group" align="left">
-			    <label for="exampleFormControlInput1">Date</label>
-			    <input type="date" class="form-control" id="exampleFormControlInput1" name="date" th:value="${task.date}" >
-			  </div>
-			  <div class="form-group" align="left">
-			    <label for="exampleFormControlSelect1">Task</label>
-			    <select class="form-control" name="activityId">
-			    	<option th:if="${task == null or task.activityId == null or task.activityId == 0 }">Select Task</option>
-			    	<option th:each="activity : ${activities}" th:value="${activity.id}" th:text="${activity.name}" th:selected="${task.activityId == activity.id}"></option>
-			    </select>
-			  </div>
-			   <div class="form-group" align="left">
-			    <label for="exampleFormControlSelect1">Duration (between 0.5 to 12)</label>
-			      <input type="number" class="form-control" id="exampleFormControlSelect1" min="0.5" max="12" step="0.01" name="duration" th:field="${task.duration}" placeholder="Enter Duration">
-			    
-			    <!-- <select class="form-control" id="exampleFormControlSelect1">
-			      <option>1</option>
-			    </select> -->
-			  </div>
-			  <div class="form-group" align="left">
-			    <label for="exampleFormControlTextarea1">Comments</label>
-			    <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="comment" th:text="${task.comment}" th:value="${task.comment}"></textarea>
-			  </div>
-			  <input type="hidden" th:value="${task.id != null ? task.id : 0}" name="id"/>
-			  <input type="submit" value="save"/>
-			  <div class="text-danger" th:text="${errorMessage}"></div>
+	<main role="main" class="container">
+			
+		<div class="starter-template">
+			<h1>[[${taskType}]]</h1>
+			
+			<form th:action="@{${taskRoute}}" th:object="${task}" method="POST">
+				<div class="form-group" align="left">
+					<label for="exampleFormControlInput1">Date</label> <input
+						type="date" class="form-control" id="exampleFormControlInput1"
+						name="date" th:value="${task.date}">
+				</div>
+				<div class="form-group" align="left">
+					<label for="exampleFormControlSelect1">Task</label> <select
+						class="form-control" name="activityId">
+						<option
+							th:if="${task == null or task.activityId == null or task.activityId == 0 }">Select
+							Task</option>
+						<option th:each="activity : ${activities}"
+							th:value="${activity.id}" th:text="${activity.name}"
+							th:selected="${task.activityId == activity.id}"></option>
+					</select>
+				</div>
+				<div class="form-group" align="left">
+					<label for="exampleFormControlSelect1">Duration (between
+						0.5 to 12)</label> <input type="number" class="form-control"
+						id="exampleFormControlSelect1" min="0.5" max="12" step="0.01"
+						name="duration" th:field="${task.duration}"
+						placeholder="Enter Duration">
+				</div>
+				<div class="form-group" align="left">
+					<label for="exampleFormControlTextarea1">Comments</label>
+					<textarea class="form-control" id="exampleFormControlTextarea1"
+						rows="5" name="comment" th:text="${task.comment}"
+						th:value="${task.comment}"></textarea>
+				</div>
+				<div class="text-left font-weight-bolder text-danger">
+					[[${errorMessage}]]
+				</div>
+				<a class="btn btn-danger" th:href="@{/task-view}">Cancel</a>
+				<input type="hidden" th:value="${task.id != null ? task.id : 0}"
+					name="id" /> <input type="submit" value="Save"
+					class="btn btn-primary" />
 			</form>
-    </div>
-    
-</main>
-<!-- /.container -->
+		</div>
 
-<script type="text/javascript" th:src="@{webjars/bootstrap/4.2.1/js/bootstrap.min.js}"></script>
-<script type="text/javascript">
-</script>
+	</main>
+	<!-- /.container -->
+
+	<script type="text/javascript"
+		th:src="@{webjars/bootstrap/4.2.1/js/bootstrap.min.js}"></script>
+	</script>
 </body>
 </html>

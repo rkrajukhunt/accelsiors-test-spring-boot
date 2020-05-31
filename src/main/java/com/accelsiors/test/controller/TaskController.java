@@ -44,22 +44,22 @@ public class TaskController {
 		return "task-view";
 	}
 
-	@RequestMapping(value= { "task-edit", "task-create" },method = RequestMethod.GET)
-	public String getActivites(Model model, @RequestParam(name="id",required = false) Optional<Integer> taskId) {
+	@RequestMapping(value = { "task-edit", "task-create" }, method = RequestMethod.GET)
+	public String getActivites(Model model, @RequestParam(name = "id", required = false) Optional<Integer> taskId) {
 		try {
-				List<Activity> activities = taskService.getActivitirs();
-			 	model.addAttribute("activities", activities);
+			List<Activity> activities = taskService.getActivitirs();
+			model.addAttribute("activities", activities);
 
-				TaskVO task = null;
-				model.addAttribute("taskRoute","/save-task");
-				model.addAttribute("taskType", "Create Task");
-			if(taskId.isPresent() && taskId.get() > 0 ) {
-				model.addAttribute("taskRoute","/update-task");
+			TaskVO task = null;
+			model.addAttribute("taskRoute", "/save-task");
+			model.addAttribute("taskType", "Create Task");
+			if (taskId.isPresent() && taskId.get() > 0) {
+				model.addAttribute("taskRoute", "/update-task");
 				model.addAttribute("taskType", "Edit Task");
 				task = taskService.getTaskById(taskId.get());
 			}
 			model.addAttribute("task", task != null ? task : new TaskVO());
-			model.addAttribute("errorMessage","");
+			model.addAttribute("errorMessage", "");
 
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -69,42 +69,43 @@ public class TaskController {
 	}
 
 	@PostMapping("/save-task")
-	public String saveTask( TaskVO taskVO,Model model) {
+	public String saveTask(TaskVO taskVO, Model model) {
 		try {
-			 ResultStatus saveTask = taskService.saveTask(taskVO);
-			 if(saveTask.getStatusCode() == 1) {
-				 return "redirect:/task-view";
-			 }
-			 List<Activity> activities = taskService.getActivitirs();
-			 	model.addAttribute("activities", activities);
 			
-				model.addAttribute("taskRoute","/save-task");
+			ResultStatus saveTask = taskService.saveTask(taskVO);
 			
-				model.addAttribute("task", taskVO);
-				model.addAttribute("errorMessage", saveTask.getMessage());
-		}catch (Exception e) {
+			if (saveTask.getStatusCode() == 1)
+				return "redirect:/task-view";
+			
+			List<Activity> activities = taskService.getActivitirs();
+			model.addAttribute("activities", activities);
+			model.addAttribute("taskRoute", "/save-task");
+			model.addAttribute("taskType", "Create Task");
+			model.addAttribute("task", taskVO);
+			model.addAttribute("errorMessage", saveTask.getMessage());
+		} catch (Exception e) {
 			log.debug("getting error saveTask ");
-
 		}
 		return "task-edit";
 	}
 
 	@PostMapping("/update-task")
-	public String updateTask(TaskVO taskVO,Model model) {
+	public String updateTask(TaskVO taskVO, Model model) {
 		log.info("payload :- {}", taskVO.toString());
 		try {
-			 ResultStatus editTask = taskService.editTask(taskVO);
-			 if(editTask.getStatusCode() == 1) {
-				 return "redirect:/task-view";
-			 }
-			 List<Activity> activities = taskService.getActivitirs();
-			 	model.addAttribute("activities", activities);
-		
-			 	model.addAttribute("taskRoute","/update-task");
-		
+			ResultStatus editTask = taskService.editTask(taskVO);
+			if (editTask.getStatusCode() == 1) {
+				return "redirect:/task-view";
+			}
+			List<Activity> activities = taskService.getActivitirs();
+			model.addAttribute("activities", activities);
+
+			model.addAttribute("taskRoute", "/update-task");
+
 			model.addAttribute("task", taskVO);
+			model.addAttribute("taskType", "Edit Task");
 			model.addAttribute("errorMessage", editTask.getMessage());
-		}catch (Exception e) {
+		} catch (Exception e) {
 			log.debug("getting error updateTask ");
 		}
 		return "task-edit";
