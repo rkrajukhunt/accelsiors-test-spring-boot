@@ -44,7 +44,7 @@ public class TaskController {
 		return "task-view";
 	}
 
-	@RequestMapping(value= {"task-edit" },method = RequestMethod.GET)
+	@RequestMapping(value= { "task-edit", "task-create" },method = RequestMethod.GET)
 	public String getActivites(Model model, @RequestParam(name="id",required = false) Optional<Integer> taskId) {
 		try {
 				List<Activity> activities = taskService.getActivitirs();
@@ -52,8 +52,10 @@ public class TaskController {
 
 				TaskVO task = null;
 				model.addAttribute("taskRoute","/save-task");
+				model.addAttribute("taskType", "Create Task");
 			if(taskId.isPresent() && taskId.get() > 0 ) {
 				model.addAttribute("taskRoute","/update-task");
+				model.addAttribute("taskType", "Edit Task");
 				task = taskService.getTaskById(taskId.get());
 			}
 			model.addAttribute("task", task != null ? task : new TaskVO());
